@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class SceneScript : MonoBehaviour
 {
     public Light light;
+    public RawImage ground;
     public RawImage capa01;
     public RawImage capa02;
     public RawImage capa03;
@@ -22,9 +23,10 @@ public class SceneScript : MonoBehaviour
     void Update()
     {
         transition = 100 / GameManager.sharedInstance.dayDuration / 6 * GameManager.sharedInstance.time;
-        capa01.uvRect = new Rect(capa01.uvRect.x + (float)localoffset * Time.deltaTime, 0, 2, 1);
-        capa02.uvRect = new Rect(capa02.uvRect.x + (float)((double)localoffset / 5 * 4) * Time.deltaTime, 0, 2, 1);
-        capa03.uvRect = new Rect(capa03.uvRect.x + (float)((double)localoffset / 5 * 3) * Time.deltaTime, 0, 2, 1);
+        ground.uvRect = new Rect(ground.uvRect.x + (float)localoffset * Time.deltaTime, 0, 2, 1);
+        capa01.uvRect = new Rect(capa01.uvRect.x + (float)((double)localoffset / 5 * 4) * Time.deltaTime, 0, 2, 1);
+        capa02.uvRect = new Rect(capa02.uvRect.x + (float)((double)localoffset / 5 * 3) * Time.deltaTime, 0, 2, 1);
+        capa03.uvRect = new Rect(capa03.uvRect.x + (float)((double)localoffset / 5 * 2) * Time.deltaTime, 0, 2, 1);
         capa04.uvRect = new Rect(capa04.uvRect.x + ((float)((double)localoffset / 5 * 1)) * Time.deltaTime, 0, 2, 1);
 
         if (GameManager.sharedInstance.currentTime == TimeOfDay.Sunset)
