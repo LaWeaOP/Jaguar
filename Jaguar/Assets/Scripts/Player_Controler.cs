@@ -89,7 +89,7 @@ public class Player_Controler : MonoBehaviour
                 {
                     MoveStop();
                 }
-                if (Input.GetButtonDown("Jump"))
+                if (Input.GetButtonDown("Fire2"))
                 {
                     PlayerJummp();
                 }
@@ -97,6 +97,7 @@ public class Player_Controler : MonoBehaviour
                 {
                     Fire();
                     timer = 0;
+                    anim.SetInteger("Hideonbush_States", 3);
                 }
             }
         }
@@ -130,7 +131,7 @@ public class Player_Controler : MonoBehaviour
             sr.flipX = false;
         if (!isJumping)
         {
-            anim.SetInteger("State", 1);
+            anim.SetInteger("Hideonbush_States", 2);
         }
     }
 
@@ -141,7 +142,7 @@ public class Player_Controler : MonoBehaviour
         rb.velocity = new Vector2(0, rb.velocity.y);
         if (!isJumping)
         {
-            anim.SetInteger("State", 0);
+            anim.SetInteger("Hideonbush_States", 0);
         }
     }
 
@@ -152,7 +153,7 @@ public class Player_Controler : MonoBehaviour
         {
             isJumping = true;
             rb.AddForce(new Vector2(0, forceJump));
-            anim.SetInteger("State", 2);
+            anim.SetInteger("Hideonbush_States", 0);
         }
     }
 
