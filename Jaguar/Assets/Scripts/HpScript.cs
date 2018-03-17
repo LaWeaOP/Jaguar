@@ -23,7 +23,6 @@ public class HpScript : MonoBehaviour
 
     void Die()
     {
-        //anim de muerte
         if (gameObject.tag == "Jaguar")
         {
             GameManager.sharedInstance.currentStateGame = GameState.gameOver;
