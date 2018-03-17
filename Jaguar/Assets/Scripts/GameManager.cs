@@ -13,12 +13,14 @@ public class GameManager : MonoBehaviour
     public GameState currentStateGame = GameState.menu;
     public TimeOfDay currentTime = TimeOfDay.Sunlight;
     public Text scoreText;
+    public Text dayTimer;
     public GameObject ice;
     public GameObject enemy;
     public float dayDuration;
     int dayTime = 1;
     int lootScore = 0;
-    float time;
+    public float time;
+    float clock = 12;
     #endregion
 
     void Awake()
@@ -37,10 +39,11 @@ public class GameManager : MonoBehaviour
 
     void FixedUpdate()
     {
+        clock += Time.deltaTime * (Time.deltaTime * 50) / (dayDuration / 24);
+        dayTimer.text = (int)(clock % 24) + ":" + (int)(clock % 1 / 100 * 600) + "0";
         time = time + Time.deltaTime;
         if (time > dayDuration / 6)
         {
-            Debug.Log(dayTime);
             time = time - dayDuration / 6;
             dayTime++;
             switch (dayTime%6)

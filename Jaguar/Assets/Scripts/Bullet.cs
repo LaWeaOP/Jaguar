@@ -11,6 +11,7 @@ public class Bullet : MonoBehaviour
 
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         Player_Controler.sharedInstance.canMove = false;
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
     }
@@ -44,13 +45,21 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        rb.velocity = new Vector3(0, 0, 0);
-        rb.constraints = RigidbodyConstraints2D.FreezeAll;
-
         if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Jaguar")
         {
             transform.SetParent(collision.transform);
             collision.gameObject.GetComponent<HpScript>().Damage(Mathf.RoundToInt(power));
+            gameObject.GetComponent<Collider2D>().enabled = false;
+            Destroy(rb);
+        }
+        else if (collision.gameObject.tag == "Player")
+        {
+
+        }
+        else
+        {
+            gameObject.GetComponent<Collider2D>().enabled = false;
+            Destroy(rb);
         }
 
         StartCoroutine(Destroy());

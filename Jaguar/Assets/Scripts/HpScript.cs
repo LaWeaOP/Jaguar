@@ -14,6 +14,11 @@ public class HpScript : MonoBehaviour
 
     public void Damage(int x)
     {
+        if (x == 10)
+        {
+            x = 20;
+        }
+
         HP = HP - x;
         if (HP <= 0)
         {
@@ -31,6 +36,7 @@ public class HpScript : MonoBehaviour
         {
             GameManager.sharedInstance.AddPoint();
             gameObject.AddComponent<Loot>();
+            Destroy(gameObject);
         }
     }
 }
